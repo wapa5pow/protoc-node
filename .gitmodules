@@ -1,0 +1,9 @@
+[submodule "protobuf"]
+	path = protobuf
+	url = git@github.com:wapa5pow/protobuf.git
+[submodule "grpc-web"]
+	path = grpc-web
+	url = git@github.com:wapa5pow/grpc-web.git
+[submodule "grpc_tools_node_protoc_ts"]
+	path = grpc_tools_node_protoc_ts
+	url = git@github.com:wapa5pow/grpc_tools_node_protoc_ts.git

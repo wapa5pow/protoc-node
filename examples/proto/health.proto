@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package example;
+
+message NestedData {
+  string string_value = 1;
+  int32 int32_value = 2;
+}
+
+message Data {
+  bool bool_value = 1;
+  string string_value = 2;
+  bytes bytes_value = 3;
+  int32 int32_value = 4;
+  fixed32 fixed32_value = 5;
+  uint32 uint32_value = 6;
+  int64 int64_value = 7;
+  fixed64 fixed64_value = 8;
+  uint64 uint64_value = 9;
+  float float_value = 10;
+  double double_value = 11;
+  NestedData nested_data = 12;
+  repeated NestedData nested_datas = 13;
+  map<string, NestedData> map_nested_datas = 14;
+  oneof value_oneof {
+    string value_oneof_first = 15;
+    NestedData value_oneof_second = 16;
+  }
+}
+
+service HealthService {
+  rpc Check(CheckRequest) returns (CheckResponse) {}
+}
+
+message CheckRequest {
+  string name = 1;
+  Data data = 2;
+}
+
+message CheckResponse {
+  string message = 1;
+  Data data = 2;
+}
