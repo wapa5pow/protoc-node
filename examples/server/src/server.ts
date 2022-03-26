@@ -1,24 +1,30 @@
 import * as grpc from "@grpc/grpc-js";
 
-import { HealthServiceService, IHealthServiceServer } from './generated/health_grpc_pb'
-import { CheckResponse } from './generated/health_pb'
+import { TodoServiceService, ITodoServiceServer } from './generated/todo_service_grpc_pb'
+import { CreateTodoResponse, Data, ListTodosResponse } from './generated/todo_service_pb'
 
-const ServerImpl: IHealthServiceServer = {
-  check: (call, callback): void => {
+const todos: Data[] = []
+
+const ServerImpl: ITodoServiceServer = {
+  createTodo: (call, callback): void => {
     console.log(call.request.toObject())
-    const name = call.request.getName()
-    const response = new CheckResponse()
-    const message = `hello ${name}!`
-    response.setMessage(message)
-    console.log(message)
+    const response = new CreateTodoResponse()
+    const todo = call.request.getData()
+    todo.setId(`${todos.length + 1}`)
+    todos.push(todo)
     response.setData(call.request.getData())
+    callback(null, response)
+  },
+  listTodos: (call, callback): void => {
+    const response = new ListTodosResponse()
+    response.setDatasList(todos)
     callback(null, response)
   }
 }
 
 function startServer() {
   const server = new grpc.Server()
-  server.addService(HealthServiceService, ServerImpl)
+  server.addService(TodoServiceService, ServerImpl)
   server.bindAsync("127.0.0.1:50051", grpc.ServerCredentials.createInsecure(), (err, port) => {
     if (err) {
         throw err;

@@ -1,5 +1,5 @@
 // package: example
-// file: health.proto
+// file: todo_service.proto
 
 /* tslint:disable */
 /* eslint-disable */
@@ -31,6 +31,8 @@ export namespace NestedData {
 }
 
 export class Data extends jspb.Message { 
+    getId(): string;
+    setId(value: string): Data;
     getBoolValue(): boolean;
     setBoolValue(value: boolean): Data;
     getStringValue(): string;
@@ -93,6 +95,7 @@ export class Data extends jspb.Message {
 
 export namespace Data {
     export type AsObject = {
+        id: string,
         boolValue: boolean,
         stringValue: string,
         bytesValue: Uint8Array | string,
@@ -114,62 +117,97 @@ export namespace Data {
 
     export enum ValueOneofCase {
         VALUE_ONEOF_NOT_SET = 0,
-        VALUE_ONEOF_FIRST = 15,
-        VALUE_ONEOF_SECOND = 16,
+        VALUE_ONEOF_FIRST = 16,
+        VALUE_ONEOF_SECOND = 17,
     }
 
 }
 
-export class CheckRequest extends jspb.Message { 
-    getName(): string;
-    setName(value: string): CheckRequest;
+export class CreateTodoRequest extends jspb.Message { 
 
     hasData(): boolean;
     clearData(): void;
     getData(): Data | undefined;
-    setData(value?: Data): CheckRequest;
+    setData(value?: Data): CreateTodoRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): CheckRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: CheckRequest): CheckRequest.AsObject;
-    static fromObject(object: CheckRequest.AsObject): CheckRequest;
+    toObject(includeInstance?: boolean): CreateTodoRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CreateTodoRequest): CreateTodoRequest.AsObject;
+    static fromObject(object: CreateTodoRequest.AsObject): CreateTodoRequest;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: CheckRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): CheckRequest;
-    static deserializeBinaryFromReader(message: CheckRequest, reader: jspb.BinaryReader): CheckRequest;
+    static serializeBinaryToWriter(message: CreateTodoRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CreateTodoRequest;
+    static deserializeBinaryFromReader(message: CreateTodoRequest, reader: jspb.BinaryReader): CreateTodoRequest;
 }
 
-export namespace CheckRequest {
+export namespace CreateTodoRequest {
     export type AsObject = {
-        name: string,
         data?: Data.AsObject,
     }
 }
 
-export class CheckResponse extends jspb.Message { 
-    getMessage(): string;
-    setMessage(value: string): CheckResponse;
+export class CreateTodoResponse extends jspb.Message { 
 
     hasData(): boolean;
     clearData(): void;
     getData(): Data | undefined;
-    setData(value?: Data): CheckResponse;
+    setData(value?: Data): CreateTodoResponse;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): CheckResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: CheckResponse): CheckResponse.AsObject;
-    static fromObject(object: CheckResponse.AsObject): CheckResponse;
+    toObject(includeInstance?: boolean): CreateTodoResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: CreateTodoResponse): CreateTodoResponse.AsObject;
+    static fromObject(object: CreateTodoResponse.AsObject): CreateTodoResponse;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: CheckResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): CheckResponse;
-    static deserializeBinaryFromReader(message: CheckResponse, reader: jspb.BinaryReader): CheckResponse;
+    static serializeBinaryToWriter(message: CreateTodoResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CreateTodoResponse;
+    static deserializeBinaryFromReader(message: CreateTodoResponse, reader: jspb.BinaryReader): CreateTodoResponse;
 }
 
-export namespace CheckResponse {
+export namespace CreateTodoResponse {
     export type AsObject = {
-        message: string,
         data?: Data.AsObject,
+    }
+}
+
+export class ListTodosRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListTodosRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListTodosRequest): ListTodosRequest.AsObject;
+    static fromObject(object: ListTodosRequest.AsObject): ListTodosRequest;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListTodosRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListTodosRequest;
+    static deserializeBinaryFromReader(message: ListTodosRequest, reader: jspb.BinaryReader): ListTodosRequest;
+}
+
+export namespace ListTodosRequest {
+    export type AsObject = {
+    }
+}
+
+export class ListTodosResponse extends jspb.Message { 
+    clearDatasList(): void;
+    getDatasList(): Array<Data>;
+    setDatasList(value: Array<Data>): ListTodosResponse;
+    addDatas(value?: Data, index?: number): Data;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListTodosResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ListTodosResponse): ListTodosResponse.AsObject;
+    static fromObject(object: ListTodosResponse.AsObject): ListTodosResponse;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListTodosResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListTodosResponse;
+    static deserializeBinaryFromReader(message: ListTodosResponse, reader: jspb.BinaryReader): ListTodosResponse;
+}
+
+export namespace ListTodosResponse {
+    export type AsObject = {
+        datasList: Array<Data.AsObject>,
     }
 }
